@@ -1,0 +1,5 @@
+jbk:
+  _ openjdk: 8
+
+before_install:
+  - ./scripts/prepareJitpackEnvironment.sh
