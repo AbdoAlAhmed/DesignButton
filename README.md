@@ -4,7 +4,9 @@ DesignButton with canvas
 
 ## video
 
-![DesignButton](https://user-images.githubusercontent.com/114856959/212491531-e4c3f415-a12d-4cba-9966-dbbd640a1316.gif)
+
+https://user-images.githubusercontent.com/114856959/212491915-28693ea6-aeca-4943-a95d-a37a42f40567.mp4
+
 
 
 ### to install the lib 
