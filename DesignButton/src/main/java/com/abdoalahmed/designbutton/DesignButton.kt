@@ -38,11 +38,17 @@ class DesignButton @JvmOverloads constructor(
                 invalidate()
             }
             ButtonState.Clicked -> {
+                text = "Loading ..."
+                progress = 0
                 animationButton()
-
+                invalidate()
             }
-            else -> {
 
+            else -> {
+                text = "Download"
+                progress = 0
+                animate.cancel()
+                invalidate()
             }
         }
         invalidate()
@@ -66,13 +72,14 @@ class DesignButton @JvmOverloads constructor(
     private var paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL_AND_STROKE
         textAlign = Paint.Align.CENTER
-        textSize = 55.0f
+        textSize = 50.0f
         typeface = Typeface.create("", Typeface.BOLD)
         color = Color.YELLOW
     }
 
     init {
         isClickable = true
+        isLongClickable = true
         context.obtainStyledAttributes(attr, R.styleable.DesignButton, defStyle, 0).apply {
             textColor = getColor(R.styleable.DesignButton_text_color, 0)
             _backgroundColor = getColor(R.styleable.DesignButton_background_color, 0)
@@ -81,6 +88,8 @@ class DesignButton @JvmOverloads constructor(
             circleColor = getColor(R.styleable.DesignButton_circle_color, 0)
             circleProgressColor = getColor(R.styleable.DesignButton_circle_progress_color, 0)
             text = getString(R.styleable.DesignButton_text).toString()
+            progress = getInt(R.styleable.DesignButton_progress, 0)
+            recycle()
         }
 
 
@@ -124,7 +133,6 @@ class DesignButton @JvmOverloads constructor(
             paint
         )
 
-        // draw small circle
         paint.color = circleColor
         canvas?.drawArc(
             (widthSize - 100).toFloat(),
@@ -160,5 +168,9 @@ class DesignButton @JvmOverloads constructor(
             this.buttonState = state
         }
     }
-
+        @JvmName("setProgress1")
+    fun setProgress(progress: Int) {
+        this.progress = progress
+        invalidate()
+    }
 }
